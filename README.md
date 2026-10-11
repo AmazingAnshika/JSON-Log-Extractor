@@ -66,15 +66,3 @@ so a second run stacks new values underneath the old ones.
 
 The input path and output directory are hardcoded in `main()` in `newa.cpp`; change them
 there and recompile to process a different file.
-
-## Known limitations
-
-- **Rows are not aligned.** A field missing from a line is skipped rather than written as
-  a blank line, so column files end up with different lengths and a row can no longer be
-  reassembled by line number. Visible with `dummy1.log`.
-- **Writes are not synchronized.** A mutex is declared but never locked, so threads
-  appending to the same column file can interleave, and concurrent appends mean output
-  order does not follow input order.
-- **The whole file is read into memory** before processing, which does not hold for the
-  4–48 GB target. A streaming single pass is needed instead.
-- One `ofstream` is opened and closed per value, making syscalls the dominant cost.

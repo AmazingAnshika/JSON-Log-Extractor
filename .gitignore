@@ -1,0 +1,9 @@
+# Compiled binary
+extractor
+
+# Generated columnar output
+output_columns/
+
+# Editor / OS
+.vscode/
+.DS_Store
